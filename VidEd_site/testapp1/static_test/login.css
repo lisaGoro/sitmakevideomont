@@ -1,0 +1,244 @@
+
+/* блок авторизации*/
+.authcard {
+    min-width: 500px;
+    width: 23vw;
+    /* height: 27vw; */
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+    font-family: "MyriadPro";
+    box-shadow: 0px 0px 20px rgb(89, 89, 89);
+    animation: loadcard 0.5s;
+    padding: 5vw;
+    position: relative;
+    font-family: "MyriadProLight";
+}
+
+.password-control {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
+}
+.password-control.view {
+	background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
+}
+
+.button{
+    margin-top: 2vh;
+    width: 100%;
+    height: calc(5vh + 15px);
+    background-color: white;
+    font-size: 25px;
+    border-radius: 10px;
+    border-color: #bdbdbd;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    animation: anim_grad_boxshadow 10s infinite, loadimg50 0.5s;
+}
+.button:hover{
+    /* background: linear-gradient(to top right, #f686fc, #8bc3ff);
+    animation: 5s infinite linear, anim_grad_boxshadow 10s infinite, loadimg50 0.5s;
+    transition: all 1s; */
+    cursor: pointer;
+}
+
+/*  */
+
+/*  */
+@keyframes shine {
+    from {
+        background-position: 0 40vw;
+    }
+
+    to {
+        background-position: 0 0;
+    }
+}
+
+/*  */
+@keyframes anim_grad_border {
+    from {
+        border: 5px solid #067eff;
+    }
+
+    to {
+        border: 5px solid #067eff;
+    }
+
+    50% {
+        border: 5px solid #f306ff;
+    }
+}
+
+@keyframes anim_grad_word {
+    from {
+        color: #067eff;
+    }
+
+    to {
+        color: #067eff;
+    }
+
+    50% {
+        color: #f306ff;
+    }
+}
+@keyframes anim_grad_boxshadow {
+    from {
+        box-shadow: 5px 5px 5px #067eff;
+    }
+
+    to {
+        box-shadow: 5px 5px 5px #067eff;
+    }
+
+    50% {
+        box-shadow: 5px 5px 5px #f306ff;
+    }
+}
+
+.text-field {
+    /* margin-bottom: 1rem; */
+    display: flex;
+    flex-direction: row;
+    margin-top: 5vh;
+}
+
+.text-field__label {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.text-field__input {
+    width: 100%;
+    height: 2vw;
+    font-size: 30px;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid #bdbdbd;
+}
+
+.text-field__input::placeholder {
+    color: #212529;
+    opacity: 0.4;
+}
+
+.text-field__input:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #bdbdbd;
+    outline: 0;
+    animation: anim_grad_border 5s infinite;
+}
+
+.text-field__input:disabled,
+.text-field__input[readonly] {
+    background-color: #f5f5f5;
+    opacity: 1;
+}
+
+/* with floating label */
+.text-field_floating-2 {
+    position: relative;
+    width: 80%;
+}
+
+.text-field_floating-2 .text-field__input {
+    height: calc(2.5rem + 2px);
+    padding: 0.5rem 0.75rem;
+}
+
+.text-field_floating-2 .text-field__label {
+    position: absolute;
+    top: 50%;
+    left: 0.3125rem;
+    display: flex;
+    transform: translateY(-50%);
+    pointer-events: none;
+    border: none;
+    background-color: #fff;
+    color: #757575;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    transition: top 0.1s ease-in-out, scale 0.1s ease-in-out;
+}
+
+.text-field_floating-2 .text-field__input::-moz-placeholder {
+    color: transparent;
+}
+
+.text-field_floating-2 .text-field__input::placeholder {
+    color: transparent;
+}
+
+.text-field_floating-2 .text-field__input:focus~.text-field__label,
+.text-field_floating-2 .text-field__input:not(:placeholder-shown)~.text-field__label {
+    top: 0;
+    transform: translateY(-50%) scale(0.75);
+
+}
+
+.text-field_floating-2 .text-field__input:focus~.text-field__label {
+    animation: anim_grad_word 5s infinite;
+}
+
+/*  */
+@keyframes loadtag {
+    from {
+        right: 100%;
+    }
+
+    to {
+        right: 0;
+    }
+}
+
+/*  */
+@keyframes loadcard {
+    from {
+        left: 100%;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+@font-face {
+    font-family: "MyriadPro";
+    src: url("MYRIADPRO-REGULAR.OTF") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "MyriadProLight";
+    src: url("MyriadPro-Light.otf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Recolors";
+    src: url("RecolorsPersonalUse.otf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Glitch";
+    src: url("slifted.otf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}

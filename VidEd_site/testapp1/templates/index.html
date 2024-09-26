@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+</head>
+<body lang="ru">
+    <div class="hat" id="hat">
+        
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/"><h1 id="title">Crystal Studio</h1></a></div>
+        <div class="avatar_menu">
+            {% if username != "" %}
+            <div class="nickname_avatar_hat" onclick="window.location.href='/profile/'">
+                <div class="nickname_hat">#{{username}}</div>
+                <div class="avatar_hat"><img id="avatarImg" src="{% static 'img/' %}"></div>
+            </div>
+            {% endif %}
+            <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div>
+        </div>
+         
+    </div>
+    <nav id="menu">
+        <p>//   Order   //</p>
+        
+        <a href="/VidEd/">Видеомонтаж</a>
+        <a href="/Prog/"><del>Программирование</del></a>
+        <a href="/Design/"><del>Веб-дизайн</del></a>
+        <hr>
+        <p>//   Authentication   //</p>
+        
+        <a href="/login/">Вход</a>
+        <a href="/reg/">Регистрация</a>
+        <hr>
+        <p>//   Info   //</p>
+        
+        <a href="/contacts/">Контакты</a>
+        <a href="/help/">Поддержка</a>
+    </nav>
+    <div class="content">
+        <div class="line">
+            <div class="tagline">Открыты к новым задачам</div>
+            <div class="img50"><img src="{% static 'img/random_img/1.jpg' %}"></div>
+        </div>
+        <div class="line">
+            <div class="Term">////     Наши услуги     ////</div>
+        </div>  
+        <div class="line">
+            <div class="cardRoulette">
+                <div class="card" onclick="goVidEd()" id="VideoEditing">
+                    <img src="{% static 'img/random_img/3.jpg' %}">
+                    <p class="name">- Видеомонтаж -</p>
+                    <p class="description_index">Превратите ваши видео в шедевры  с нашим профессиональным видеомонтажом! Мы создаем уникальные и захватывающие ролики, которые привлекут внимание вашей аудитории. Независимо от того, нужно ли вам рекламный ролик, корпоративное видео или личное воспоминание, мы гарантируем высокое качество и креативный подход. Узнайте больше и закажите услугу прямо сейчас!</p>
+                    <p><u>Подробнее...</u></p>
+                </div>
+                <div class="card" onclick="goProg()" id="Programming">
+                    <img src="{% static 'img/random_img/2.jpg' %}">
+                    <p class="name">- Программирование -</p>
+                    <p class="glitchText">В разработке</p>
+                    <p class="description_index">Столкнулись с проблемой в сфере программирования? Наши специалисты помогут вам! От простых задач вроде задания по информатике, до разработки собственного сайта - оставляйте заявку, а мы разберемся!</p>
+                    <p><u>Подробнее...</u></p>
+                </div>
+                <div class="card" onclick="goDesign()" id="Design">
+                    <img src="{% static 'img/random_img/4.jpg' %}">
+                    <p class="name">- Веб-дизайн -</p>
+                    <p class="glitchText">В разработке</p>
+                    <p class="description_index">Создайте впечатляющий и функциональный веб-сайт с нашими услугами веб-дизайна! Мы разрабатываем уникальные и интуитивно понятные интерфейсы, которые привлекут и удержат ваших пользователей.</p>
+                    <p><u>Подробнее...</u></p>
+                </div>
+            </div>
+        </div>
+        <div class="line">
+            <div class="Term">////     О нас     ////</div>
+        </div>  
+        <div class="line">
+            <div class="img50 reflect"><img src="{% static 'img/random_img/6.jpg' %}"></div>
+            <div class="about"><p>Мы - маленькая студия начинающих специалистов, готовых дешево и быстро решать разнообразные задачи. Мы всегда нацелены на удобство и уверенность клиента. Если вас не устроит конечный результат, вы сможете вернуть потраченные деньги, так как они не идут напрямую исполнителю.</p></div>
+        </div>
+        <div class="line">
+            <div class="about">
+                <div style="justify-content: center; display: flex;">
+                <p style="font-family: 'MyriadProLight'; font-size: 40px;">Почему выбирают нас?</p>
+                </div>
+                <ul>
+                    <li class="li_name">Цена</li>
+                    <p class="p_about">Цена зависит исключительно от необходимых вам услуг. Вы не переплатите за то, что вам не нужно. Узнать про цены можно узнать на страницах с описанием услуг.</p>
+                    <li class="li_name">Скорость</li>
+                    <p class="p_about">Вы можете сами настроить срок выполнения заказа во время оформления заявки. Если работа не срочная, то вы заплатите меньше, а если наоборот - мы бросим все силы на выполнение вашей задачи в срок.</p>
+                    <li class="li_name">Безопасность</li>
+                    <p class="p_about">Не бойтесь эксперементировать! В случае неудовлетворения качеством выполнения работы, деньги всегда можно вернуть.</p>
+                    
+                </ul>
+            </div>
+            <div class="img50" id="random_img_5"><img src="{% static 'img/random_img/5.jpg' %}"></div>
+        </div>
+        <div class="line">
+            <div class="img50 reflect"><img src="{% static 'img/random_img/8.jpg' %}"></div>
+            <div class="about">
+                <ul>
+                    <li class="li_name">Универсальность</li>
+                    <p class="p_about">От видео о семейной поездке, до профессионального ролика на видеоплатформах - вы можете обратиться к нам.</p>
+                    <li class="li_name">Простота использования</li>
+                    <p class="p_about">Регистрация занимает всего пару кликов, а интерфейс интуитивно понятен. Вы можете следить за статусом ствоих заказов в личном кабинете на сайте.</p>
+                    <li class="li_name">Поддержка</li>
+                    <p class="p_about">Вы можете постоянно поддерживать связь с исполнителем, корректируя его работу, а можете не вспоминать о заказе вплоть до его выполнения. В любом случае, при возникновении вопросов вы всегда можете обратиться в службу поддержки.</p>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="urls">*Какие-то ссылки*</div>
+        <div class="creators">designed by WolframX</div>
+    </div>
+
+    <script>
+        loaded('{{username}}')
+        username = '{{username}}'
+        url = "/static/avatars/" + username + ".png"
+        img = document.getElementById("avatarImg")
+        img.src = url
+    </script>
+    
+</body>
+</html> 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Контакты</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/contacts.css' %}">
+        <script src="{% static 'js/index.js' %}"></script>
+    </head>
+    <body>
+        <div class="hat" id="hat">
+        
+            <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/"><h1 id="title">Crystal Studio</h1></a></div>
+            <div class="avatar_menu">
+                {% if username != "" %}
+                <div class="nickname_avatar_hat" onclick="window.location.href='/profile/'">
+                    <div class="nickname_hat">#{{username}}</div>
+                    <div class="avatar_hat"><img id="avatarImg" src="{% static 'img/default.png' %}"></div>
+                </div>
+                {% endif %}
+                <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div>
+            </div>
+        </div>
+        <nav id="menu">
+            <p>//   Order   //</p>
+            
+            <a href="/VidEd/">Видеомонтаж</a>
+            <a href="/Prog/"><del>Программирование</del></a>
+            <a href="/Design/"><del>Веб-дизайн</del></a>
+            <hr>
+            <p>//   Authentication   //</p>
+            
+            <a href="/login/">Вход</a>
+            <a href="/reg/">Регистрация</a>
+            <hr>
+            <p>//   Info   //</p>
+            
+            <a href="/contacts/">Контакты</a>
+        </nav>
+
+        <div class="content">
+            <div class="line">
+                <div class="tagline">Контакты</div>
+            </div>
+            <div class="line">
+                <div class="about">
+                    <p>Для вас ежедневно трудятся люди со всей страны, поэтому на данный момент у нас нет офиса. Однако, если вы желаете связаться с администрацией проекта, то вы можете сделать это при помощи ссылок:</p>
+                    <li>Главный администратор:</li>
+                    <div class="urlContact" onclick="window.location.href='/t.me/yozoos'"><div class="tag_img"><img src="{% static 'img/telegramlogo.png' %}">@yozoos</div> <p>Написать</p></div>
+                    <li>По техническим вопросам и предложениям:</li>
+                    <div class="urlContact"><div class="tag_img"><img src="{% static 'img/telegramlogo.png' %}">@lisa_grdlv</div> <p>Написать</p></div>
+                    <li>По любым вопросам:</li>
+                    <div class="urlContact"><div class="tag_img"><img src="{% static 'img/telegramlogo.png' %}">@lwharS</div> <p>Написать</p></div>
+                </div>
+                <div class="Help">
+                    <p>В случае, если у вас есть вопрос, вы можете воспользоваться страницей "Помощь". Если вам необходимо срочно получить ответ на выш вопрос, вы также можете обратиться напрямую к главному администратору или воспользоваться экстренной заявкой телеграмм-бота.</p>
+                    <button class="helpBut" onclick="window.location.href='/help/'">Поддержка >></button>
+                </div>
+            </div>
+        <div class="footer">
+            <div class="urls">*Какие-то ссылки*</div>
+            <div class="creators">designed by WolframX</div>
+        </div>
+        <script>
+        loaded('{{username}}')
+        </script>
+    </body>
+</html>

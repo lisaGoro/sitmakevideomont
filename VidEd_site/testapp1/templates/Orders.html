@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Заявка</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/orders.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+</head>
+
+<body>
+    <div class="hat" id="hat">
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/">
+                <h1 id="title">Crystal Studio</h1>
+            </a></div>
+        <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div>
+    </div>
+    <nav id="menu">
+        <p>// Order //</p>
+        <a href="/Orders/">Свободные заказы</a>
+        <a href="/History/">История заказов</a>
+        <hr>
+        <p>// Profile //</p>
+        <a href="/worker/">Профиль</a>
+
+    </nav>
+
+    <div class="content">
+        <div class="line">
+            <div class="orderstable">
+                <div class="tablename">Заказы:</div>
+                <div class="row">
+                    <p style="font-size: 30px;">Название заказа</p>
+                    <p style="font-size: 30px;">Дата</p>
+                    <p style="font-size: 30px;">Время</p>
+                    <p style="font-size: 30px;">Заказчик</p>
+                    <p style="font-size: 30px;">Осталось, дней:</p>
+                </div>
+                {% for name, creator, create_date, create_time, delta_days in names_creators %}
+                <div class="row">
+                    <p>{{name}}</p>
+                    <p>{{create_date}}</p>
+                    <p>{{create_time}}</p>
+                    <p>{{creator}}</p>
+                    <p>{{delta_days}}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="urls">*Какие-то ссылки*</div>
+        <div class="creators">designed by WolframX</div>
+    </div>
+    <script>
+        all_rows = document.getElementsByClassName("row");
+        for (let i = 1; i < all_rows.length; i++) {
+            if (parseInt(all_rows[i].lastElementChild.textContent) < 30) {
+                all_rows[i].classList.add("time_1")
+            }
+            else if (parseInt(all_rows[i].lastElementChild.textContent) < 7) {
+                all_rows[i].classList.add("time_2")
+            }
+            else if (parseInt(all_rows[i].lastElementChild.textContent) < 2) {
+                all_rows[i].classList.add("time_3")
+            }
+            else {
+                all_rows[i].classList.add("time_0")
+            }
+
+        }
+       
+    </script>
+
+</body>
+</html>

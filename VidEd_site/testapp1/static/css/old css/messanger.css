@@ -1,0 +1,221 @@
+body {
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: 3px;
+    scrollbar-color: #067eff;
+    margin: 0;
+    background-color: #0b111b;
+}
+
+
+
+.foot {
+    background-color: #363638;
+    display: flex;
+    height: 10vh;
+    /* border-radius: 20px; */
+    
+    box-shadow: 0px 0px 1vh #363638;
+    justify-content: center;
+    align-items: center;
+}
+.typing_message {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+#new_message_text {
+    width: 90%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: calc(40px + 4 * (100vh - 600px) / 200);
+    border-radius: 10px;
+    /* height: 100%; */
+    
+
+}
+
+#messageForm {
+    width: 100%;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+.backButtom img {
+    width: 100%;
+    height: 100%;
+}
+.backButtom {
+    width: 8vh;
+    height: 8vh;
+    position: absolute;
+    top: calc(20px + 1vh);
+    left: calc(20px + 1vh);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#send_message {
+    width: 8%;
+    height: calc(8vw);
+    max-height: 8vh;
+    max-width: 8vh;
+    border-radius: 30%;
+    border: none;
+    background-size: 100% 100%;
+    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
+    position: relative;
+    bottom: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: #363638;
+    padding-top: 20px;
+    padding-bottom: 20px;
+     box-shadow: 0px 0px 1vh #363638;
+    /* border-radius: 20px; */
+    /* margin-bottom: 10px; */
+    /* margin-top:15px; */
+    height: 10vh;
+}
+.user_status {
+    background-color: rgb(21, 255, 0);
+    width: calc(10px + 4 * (100vh - 600px) / 200);
+    height: calc(10px + 4 * (100vh - 600px) / 200);
+    border-radius: 50px;
+    margin-left: 5px;
+}
+.connection {
+    color: white;
+    font-size: calc(14px + 4 * (100vh - 600px) / 200);
+    /* visibility: hidden;
+    position: absolute; */
+}
+
+.user_namebox .user_name {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: calc(35px + 4 * (100vh - 600px) / 200);
+    color: white;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 1vw;
+}
+
+.user_avatar {
+    position: relative;
+    overflow: hidden;
+    width: 8vh;
+    height: 8vh;
+    border-radius: 50%;
+    /* box-shadow: 0px 0px 10px black; */
+}
+.user_avatar img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.message_box::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+}
+
+
+.message_box {
+    height: calc(80vh - 40px);
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #7eb6f0 white;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    /* scroll-behavior: smooth; */
+    
+}
+.message {
+    margin-bottom: 5px;
+    animation-name: send;
+    animation-duration: 0.5s;
+    position: relative;
+}
+
+.message_outer {
+    display: flex;
+}
+
+.message_inner {
+    flex: 1;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.message_inner .message_bubble {
+    background-color:#067eff;
+    color: white;
+}
+.message_outer .message_bubble {
+    background-color:#363638;
+    color: white;
+}
+.message_text {
+    margin: 0;
+    padding: 0;
+}
+.message_bubble {
+    
+    max-width: calc(100% - 150px);
+    /* height: 5vh; */
+    overflow-wrap: break-word;
+    border-radius: 2.5vh;
+    padding: calc((100vh - 600px) / 200);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: calc(30px + 4 * (100vh - 600px) / 200);
+    
+}
+.message_bubble p {
+    margin-left: calc(5px + 4 * (100vh - 600px) / 200);
+    margin-right: calc(5px + 4 * (100vh - 600px) / 200);
+}
+
+.message_time {
+    padding-right: 5px;
+    font-size: calc(15px + 4 * (100vh - 600px) / 200);
+    display: flex;
+    align-items:end;
+    justify-content: end;
+    margin-right: calc(5px + 4 * (100vh - 600px) / 200);
+    margin-left: calc(5px + 4 * (100vh - 600px) / 200);
+}
+
+.message_status {
+    width: 5px;
+    margin-left: 5px;
+    border-radius: 10px;
+    background-color: #067eff;
+
+}
+
+.message_spacer {
+    flex: 1;
+}
+
+@keyframes show {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes send {
+    from { top: 10px; opacity: 0; }
+    to { top:0px; opacity: 1; }
+}

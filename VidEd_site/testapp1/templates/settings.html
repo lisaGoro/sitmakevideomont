@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+</head>
+<body>
+    {% csrf_token %}
+
+    <div class="hatProfile">
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/"><h1 id="title">Crystal Studio</h1></a></div>
+    </div>
+    <div class="content">
+        <div class='line'>
+        <div class="backBut" onclick="window.location.href='/profile/'"><img src="{% static 'img/arrow_5.png' %}"></div>
+        <form method="post", action="/profile/settings/">
+            {%csrf_token%}
+            <div class='firstname'>
+                <p>Имя:</p>
+                <input name="firstname" type="text" autocomplete="off" maxlength="30" required value="{{firstname}}">
+            </div>
+            <div class="secondname">
+                <p>Фамилия:</p>
+                <input name="secondname" maxlength="30" autocomplete="off" type="text" value="{{secondname}}">
+            </div>
+            <input id="saveBut" type="submit" value="Сохранить">
+        </form>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Заявка</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/formplication.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+</head>
+
+<body>
+    <div class="hat" id="hat">
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/">
+                <h1 id="title">Crystal Studio</h1>
+            </a></div>
+        <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div>
+    </div>
+    <nav id="menu">
+        <p>// Order //</p>
+
+        <a href="/VidEd/">Видеомонтаж</a>
+        <a href="/Prog/"><del>Программирование</del></a>
+        <a href="/Design/"><del>Веб-дизайн</del></a>
+        <hr>
+        <p>// Authentication //</p>
+
+        <a href="/login/">Вход</a>
+        <a href="/reg/">Регистрация</a>
+        <hr>
+        <p>// Info //</p>
+
+        <a href="/contacts/">Контакты</a>
+    </nav>
+    <!-- страница авторизации -->
+    <div class="content">
+        <div class="line">
+            <div class="formcard">
+                <div class="namecard">Новый заказ</div>
+                <div id="errors" class="errors">
+                    <p id="errorsText" class="glitchText"></p>
+                </div>
+                <div class="text-field text-field_floating-2" title="Название вашего проекта">
+                    <input id="name_input" class="text-field__input" placeholder="Название">
+                    <label class="text-field__label">Название<sup>*</sup></label>
+                </div>
+                <div class="text-field text-field_floating-2" title="Опишите требования к работе. Расскажите, что вы хотите получить в качестве результата. Для дополнительной информации вы всегда сможете связаться с исполнителем в чате">
+                    <textarea id="description_input" class="text-field__input" placeholder="Описание"></textarea>
+                    <label class="text-field__label">Описание<sup>*</sup></label>
+                </div>
+                <p>Загружаемые файлы</p>
+                <div id="upload-container">
+                    <img id="upload-image" src="{% static 'img/upload_file2.png' %}">
+                    <div id="filedrag">
+                        <input id="file-uploader" type="file" name="file" multiple accept="image/*,video/*">
+                        <label id="file-up" for="file-uploader">Выберите файлы</label>
+                    </div>
+                </div>
+                <div class="feedbackbox" id="feedbackbox">
+                    
+                </div>
+
+                <div class="linksbox" id="linkbox">
+                    <p>Ссылки на файлы в облаке</p>
+                    <div class="cloudlink">
+                        <input class="inputLink" placeholder="..." type="url">
+                    </div>
+                    <input id="plusLink" class="plusLink" onclick="newLinkInput()" type="submit" value="+">
+                </div>
+
+                
+                <div class="text-field_floating-2 date-time">
+                    <p>Дедлайн <sup>(мск время)*</sup></p>
+                    <input id="date_input" type="date">
+                    <input id="time_input" type="time">
+                </div>
+
+                <div class="text-field_floating-2">
+                    <button class="button" onclick="sendaplication()">Отправить заявку</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- футер -->
+    <div class="footer">
+        <div class="urls">*Какие-то ссылки*</div>
+        <div class="creators">designed by WolframX <br/> & LisaGrdlv</div>
+    </div>
+
+    <script>
+        const fileUploader = document.getElementById("file-uploader");
+        files = [];
+        urls = [];
+        let msg = "";
+        fileUploader.addEventListener('change', function () {
+            files = this.files;
+            if (files.length <= 10) {
+                const feedback = document.getElementById("feedback");
+                
+                uploadFiles(files)
+            }
+            else {
+                document.getElementById("errors").classList.add("errorsActive");
+                document.getElementById("errorsText").textContent = "Количество файлов превышает 10";
+                this.value = "";
+                files = [];
+            }
+        });
+
+
+
+        function sendaplication() {
+            nametext = document.getElementById("name_input").value;
+            descriptiontext = document.getElementById("description_input").value;
+            dateline = document.getElementById("date_input").value;
+            timeline = document.getElementById("time_input").value;
+            cloudurls = document.getElementsByClassName("inputLink")
+            let cloudurlval = []
+            for (let i = 0; i < cloudurls.length; i++) {
+                cloudurlval[i] = cloudurls[i].value
+            }
+            console.log('nametext', nametext)
+            console.log('descript', descriptiontext)
+            console.log('date', dateline)
+            console.log('time', timeline)
+            console.log('urls', urls)
+            console.log('cloud', cloudurlval)
+            if (dateline && nametext && descriptiontext) {
+                if (!timeline)
+                    timeline = "00:00";
+                    // отправить данные на бек dateline, timeline, files, nametext, descriptiontext
+                    $.ajax({
+                        url: '/loadneworder/',
+                        type: 'POST',
+                        data: {
+                            name: nametext,
+                            description: descriptiontext,
+                            date: dateline,
+                            time: timeline,
+                            urls: urls,
+                            cloudurls: cloudurlval
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            alert("Success")
+                        },
+                        error: function(xhr, textStatus, errorThrown) {
+                            alert('Ошибка подключения');
+                        }
+                    });
+            }
+            else {
+                document.getElementById("errors").classList.add("errorsActive");
+                document.getElementById("errorsText").textContent = "Введите данные";
+                if (!nametext) {
+                    document.getElementById("description_input").classList.add("isEmpty")
+                    setTimeout(() => {document.getElementById("description_input").classList.remove("isEmpty")}, 1000)
+                }
+                if (!descriptiontext) {
+                    document.getElementById("name_input").classList.add("isEmpty")
+                    setTimeout(() => {document.getElementById("name_input").classList.remove("isEmpty")}, 1000)
+                }
+                if (!dateline) {
+                    document.getElementById("date_input").classList.add("isEmpty")
+                    setTimeout(() => {document.getElementById("date_input").classList.remove("isEmpty")}, 1000)
+                }
+            }
+        }
+            if (window.File && window.FileList && window.FileReader) {
+                document.addEventListener('DOMContentLoaded', function () {
+                    const dropzone = document.getElementById("upload-container");
+
+                    dropzone.addEventListener('dragover', function (e) {
+                        e.preventDefault();
+                        dropzone.style.borderColor = "#000";
+                    });
+                    dropzone.addEventListener('dragleave', function (e) {
+                        e.preventDefault();
+                        dropzone.style.borderColor = "#ccc";
+                    });
+                    dropzone.addEventListener('drop', function (e) {
+                        e.preventDefault();
+                        dropzone.style.borderColor = '#ccc';
+
+                        const files = e.dataTransfer.files;
+                        if (files.length > 0) {
+                            uploadFiles(files)
+                        }
+                    })
+                })
+            }
+
+        function uploadFiles(files) {
+            const formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                if (files[i].size < 10485760) {
+                    formData.append('files[]', files[i]);
+                }
+                else {
+                    alert("Максимальный размер файла - 10 мб. Пожалуйста, загрузите файл на облачное хранилище и прикрепите ссылку ниже")
+                }
+            }
+            fetch('/upload/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                urls = urls.concat(data.urls)
+                for (i = 0; i < data.message.length; i++) {
+                    let newfeedback = document.createElement('div')
+                    newfeedback.className = "feedbackitem";
+                    msg = `Файл ${data.message[i]} успешно загружен!`;
+                    newfeedback.innerHTML = " <p id='feedback'>" + msg + "</p><button onclick=\"deletefile('" + String(data.urls[i]) + "', this)\">X</button>"
+                    feedbackbox = document.getElementById("feedbackbox")
+                    feedbackbox.appendChild(newfeedback)
+                }
+                document.getElementById("file-up").innerHTML = "Выбрать другие файлы";
+            })
+            .catch(error => {
+                console.log('Error: ', error)
+            })
+        }
+        function newLinkInput() {
+
+            alllinks = document.getElementsByClassName("inputLink")
+            for (let i = 0; i < alllinks.length; i++) {
+                if (alllinks[i].value == "") {
+                    alllinks[i].classList.add("isEmpty")
+                    setTimeout(() => {alllinks[i].classList.remove("isEmpty")}, 1000)
+                    
+                    
+                    return 0
+                }
+            }
+            alllinks[alllinks.length - 1].addEventListener('change', function (e) {
+                e.preventDefault()
+                if (e.target.value == "") {
+                    e.target.remove()
+                }
+            })
+            let linkinp = document.createElement('div')
+            linkinp.className = "cloudlink";
+            linkinp.innerHTML = "<input class='inputLink' placeholder='...' type='url'>"
+            plusbut = document.getElementById("plusLink")
+            linkbox = document.getElementById("linkbox")
+            
+            plusbut.classList.add("plusjump")
+            setTimeout(() => {
+                plusbut.classList.remove("plusjump");
+                linkbox.insertBefore(linkinp, plusbut)
+            }, 500)
+        }
+        function deletefile(url, but) {
+
+            $.ajax({
+                url: '/removeload/',
+                type: 'POST',
+                data: {
+                    removeFile: url
+                },
+                dataType: 'json',
+                success: function(data) {
+                    but.closest("div").remove()
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('Ошибка подключения');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

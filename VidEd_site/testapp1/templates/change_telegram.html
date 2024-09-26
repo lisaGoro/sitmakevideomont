@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/change_telegram.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+</head>
+<body>
+    {% csrf_token %}
+
+    <div class="hatProfile">
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/"><h1 id="title">Crystal Studio</h1></a></div>
+    </div>
+    <div class="content">
+        <div class="line">
+            <div class="backBut" onclick="window.location.href='/profile/'"><img src="{% static 'img/arrow_5.png' %}"></div>
+            <div class="telegram_change_box">
+                <p>Привяжите телеграмм к вашему аккаунту,<br/> чтобы получать уведомления от сайта.</p>
+                <form action="/profile/changetg/" method="post" class="form_tg_1">
+                    {% csrf_token %}
+                    <label id="telegram_id_label" for="telegram_id_input">Логин телеграмм:</label>
+                    <input type="text" name="telegram_id" required maxlength="40" placeholder="@yourlogin" id="telegram_id_input">
+                    <input class="nextBut" type="submit" value="Далее">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        
+    </script>
+
+</body>
+</html>

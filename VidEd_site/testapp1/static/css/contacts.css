@@ -1,0 +1,72 @@
+.urlContact img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
+    filter: invert(0);
+    transition: filter 0.3s;
+}
+.urlContact {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+    transition: all 0.3s;
+    margin-bottom: 40px;
+}
+.tag_img {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+.urlContact>p {
+    margin-left: auto;
+    margin-right: 10px;
+    opacity: 0;
+    color:white;
+}
+.urlContact:hover>p {
+    opacity: 1;
+}
+.urlContact:hover {
+    background-color: rgb(35, 35, 35);
+    color: white;
+    transition: all 0.3s;
+}
+.urlContact:hover img {
+    filter: invert(1);
+    transition: all 0.3s;
+}
+li {
+
+    font-family: "MyriadProLight";
+}
+.Help {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "MyriadPro";
+    font-size: 30px;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+}
+.helpBut {
+    width: 60%;
+    font-size: 40px;
+    font-family: "MyriadProLight";
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: white;
+    animation: transfusion 10s infinite ;
+    transition: all 0.3s;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.helpBut:hover {
+    background-color: rgb(229, 229, 229);
+    transition: all 0.3s;
+}

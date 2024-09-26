@@ -1,0 +1,234 @@
+.formcard {
+    min-width: 500px;
+    width: 23vw;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+    box-shadow: 0px 0px 20px rgb(89, 89, 89);
+    /* animation: loadcard 0.5s; */
+    padding: 5vw;
+    position: relative;
+    font-family: "MyriadProLight";
+}
+
+.namecard {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    font-family: "Recolors";
+    position: relative;
+    padding-top: 5vh;
+}
+
+#description_input {
+    resize: none;
+    height: calc(20.5rem + 2px);
+}
+
+#upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    outline: 2px dashed #5d5d5d;
+    outline-offset: -12px;
+    /* background-color: #e0f2f7; */
+    color: #1f3c44;
+    margin-top: 5vh;
+    width: 80%;
+    /* animation: upload_anim_grad 10s infinite; */
+    background: linear-gradient(to bottom, #c5e1ff, #fddaff);
+    border-radius: 10px;
+    border: solid 5px;
+}
+
+#upload-container img {
+    width: 20%;
+    margin: 5%;
+    user-select: none;
+}
+
+#upload-container label {
+    font-weight: bold;
+}
+
+#upload-container label:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#upload-container div {
+    position: relative;
+    z-index: 9;
+    margin-bottom: 5%;
+}
+
+#file-up {
+    z-index: 5;
+}
+
+#upload-container input[type=file] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    position: absolute;
+    z-index: -10;
+}
+
+#upload-container label.focus {
+    outline: 1px solid #0078d7;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+@keyframes upload_anim_grad {
+    0% {
+        background-color: #067eff;
+    }
+
+    50% {
+        background-color: #f306ff;
+    }
+
+    100% {
+        background-color: #067eff;
+    }
+}
+
+#feedback {
+    font-size: 20px;
+}
+
+.date-time {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="date"],
+input[type="time"] {
+    background-color: #c5e1ff;
+    padding: 2vh;
+    position: relative;
+    color: #5d5d5d;
+    font-size: 18px;
+    border: solid 2px #c5e1ff;
+    outline: none;
+    border-radius: 10px;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-color: #fddaff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+input[type="time"] {
+    margin-top: 2vh;
+}
+.inputLink {
+    width: 100%;
+    height: 34px;
+    border-radius: 10px;
+    border: solid 1px rgb(152, 152, 152);
+    font-size: 24px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+.feedbackbox {
+    width: 80%;
+}
+.feedbackitem {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+}
+.feedbackbox p {
+    width: calc(100% - 20px);
+    margin: 0;
+}
+.feedbackbox button {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.isEmpty {
+    animation: isEmpty 0.5s;
+    border-width: 2px;
+}
+.linksbox {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.cloudlink {
+    width: 100%;
+}
+.plusLink {
+    width: 80px;
+    height: 40px;
+    margin: 0;
+    border-radius: 10px;
+    border: solid 1px rgb(152, 152, 152);
+    background: linear-gradient(to top left, #c5e1ff, #fddaff, #c5e1ff, #fddaff, #c5e1ff);
+    cursor: pointer;
+    padding-top: 0px;
+    padding-bottom: 0;
+    font-size: 24px;
+    color: black;
+}
+.plusLink:hover {
+    animation: grad_shine_but 50s infinite linear;
+}
+.plusjump {
+    animation: jumping 0.5s;
+}
+
+
+@keyframes grad_shine_but {
+    from {
+        background-position: 0px 0px;
+    }
+    to {
+        background-position: -800px -800px;
+    }
+}
+@keyframes isEmpty {
+    from {
+        border-color: rgb(152, 152, 152);
+    }
+    to {
+        border-color: rgb(152, 152, 152);
+    }
+    25% {
+        border-color: red;
+    }
+    50% {
+        border-color: rgb(152, 152, 152);
+    }
+    75% {
+        border-color: red;
+    }
+}
+@keyframes jumping {
+    from {
+        margin-top: 0;
+    }
+    to {
+        margin-top: 44px;
+    }
+}

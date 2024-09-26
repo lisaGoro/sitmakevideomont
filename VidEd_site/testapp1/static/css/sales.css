@@ -1,0 +1,35 @@
+.salesRow {
+    display: flex;
+    margin-bottom: 30px;
+}
+.salesTable {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+.salesRow>div {
+    width: 25%;
+}
+.salesRow p {
+    margin: 0;
+}
+.salesPrice {
+    font-size: 30px;
+    font-family: 'MyriadPro';
+}
+.worker {
+    font-size: 30px;
+    font-family: 'MyriadPro';
+}
+.status {
+    font-size: 30px;
+    font-family: 'MyriadPro';
+}
+.percent {
+    font-size: 20px;
+    font-family: 'MyriadProLight';
+}
+.cost {
+    font-size: 20px;
+    font-family: 'MyriadProLight';
+}

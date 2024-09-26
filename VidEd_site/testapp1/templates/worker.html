@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>Заявка</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/worker.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+</head>
+
+<body>
+    <div class="hat" id="hat">
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/">
+                <h1 id="title">Crystal Studio</h1>
+            </a></div>
+        <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div>
+    </div>
+    <nav id="menu">
+        <p>// Order //</p>
+        <a href="/Orders/">Свободные заказы</a>
+        <a href="/History/">История заказов</a>
+        <hr>
+        <p>// Profile //</p>
+        <a href="/worker/">Профиль</a>
+
+    </nav>
+    <div class="content">
+        <div class="line">
+            <div class="profileblock">
+                <div class="avatarProfile"><img id="avatarImg" src="{% static 'img/avatar1.png' %}"></div>
+                <p>{{ firstname }} {{ secondname }}</p>
+                <div class="username">#{{username}}</div>
+                <hr>
+                <button class="OrdersBut" onclick="window.location.href='/Orders/'">Заказы</button>
+                <button class="settingsBut" onclick="window.location.href='/worker/settings/'">Настройки</button>
+                <button class="exitBut" onclick="exitProfile()">Выйти</button>
+            </div>
+            <div class="abilitiesBlock">
+                <div class="progs">
+                    <div id="progBut" class="progBut" onclick="openProgs()">Программы</div>
+                    <div class="progitem">
+                        <input type="checkbox">
+                        <p>Adobe Premiere Pro</p>
+                    </div>
+                    <div class="progitem">
+                        <input type="checkbox">
+                        <p>Adobe After Effects</p>
+                    </div>
+                    <div class="progitem">
+                        <input type="checkbox">
+                        <p>Adobe Illustrator</p>
+                    </div>
+                    <div class="progitem">
+                        <input type="checkbox">
+                        <p>Adobe Photoshop</p>
+                    </div>
+                    <div class="progitem">
+                        <input type="checkbox">
+                        <p>Adobe Audition</p>
+                    </div>
+                    <div class="progitem">
+                        <input type="checkbox">
+                        <p>Vegas Pro</p>
+                    </div>
+                </div>
+                <div class="skills">
+                    <div id="skillBut" class="skillBut" onclick="openSkills()">Навыки</div>
+                    <div>
+                        <input type="checkbox"> <p>Нарезка</p>
+                    </div>
+                    <div>
+                        <input type="checkbox"> <p>Субтитры</p>
+                    </div>
+                    <div>
+                        <input type="checkbox"> <p>Переходы</p>
+                    </div>
+                    <div>
+                        <input type="checkbox"> <p>Вставка мемов</p>
+                    </div>
+                    <div>
+                        <input type="checkbox"> <p>Инфографика</p>
+                    </div>
+                    <div>
+                        <input type="checkbox"> <p>Эффекты</p>
+                
+                    </div>
+                </div>
+                <button onclick="saveSkills()" id="savebut">Сохранить</button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="urls">*Какие-то ссылки*</div>
+        <div class="creators">designed by WolframX</div>
+    </div>
+    
+
+
+
+    <script>
+        
+        loaded('{{username}}')
+        function findindex (element, array) {
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] == element) {
+                    return i;
+                }
+            }
+        }
+
+
+        all_bools = '{{skills}}'
+        all_bools = all_bools.replaceAll('False', 'false')
+        all_bools = all_bools.replaceAll('True', 'true')
+        all_bools = eval(all_bools)
+        
+        all_checkbox = $("input[type='checkbox']")
+        if (all_checkbox.lenght == all_bools.lenght) {
+            for (let i = 0; i < all_checkbox.length; i++) {
+                all_checkbox[i].checked = all_bools[i]
+            }
+        }
+        else {
+            alert("Ошибка, обратитесь к администратору")
+        }
+        
+        function openProgs() {
+            but = document.getElementById("progBut")
+            parent = but.closest(".progs")
+            parent.classList.toggle("open")
+        }
+        function openSkills() {
+            but = document.getElementById("skillBut")
+            parent = but.closest(".skills")
+            parent.classList.toggle("open")
+        }
+        function exitProfile() {
+            var x = new XMLHttpRequest();
+            x.open("GET", "/worker/logout/");
+            x.onload = function() {
+                window.location.href = "/index/"
+            }
+            x.send(null);
+        }
+        function saveSkills() {
+            all_bools = []
+            all_checkbox = $("input[type='checkbox']")
+            for (let i = 0; i < all_checkbox.length; i++) {
+                all_bools[i] = all_checkbox[i].checked
+                console.log(all_bools[i])
+            }
+            console.log(all_checkbox)
+            $.ajax({
+                    url: '/worker/saveskills/',
+                    type: 'POST',
+                    data: {
+                        // _token: ,
+                        skills: all_bools
+                    },
+                    dataType: 'json',
+                    beforeSend: function (xhr, settings) {
+                        xhr.setRequestHeader("X-CSRFToken", $('meta[name="csrf-token"]').attr('content'))
+                    },
+                    success: function(data) {
+                        alert("Изменения были сохранены")                        
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        alert("Ошибка подключения")
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

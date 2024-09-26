@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>TEST</title>
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <link rel="stylesheet" type="text/css" href="VidEd.css">
+        <script src="index.js"></script>
+    </head>
+    <body>
+        <div class="hat" id="hat">
+        
+            <div class="logoBox"><img src="logo1.png"><a href="index.html"><h1 id="title">Crystal Studio</h1></a></div>
+            <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="menu.png"></div> 
+        </div>
+        <nav id="menu">
+            <p>//   Order   //</p>
+            
+            <a href="VidEd.html">Видеомонтаж</a>
+            <a href="Prog.html"><del>Программирование</del></a>
+            <a href="Design.html"><del>Веб-дизайн</del></a>
+            <hr>
+            <p>//   Authentication   //</p>
+            
+            <a href="login.html">Вход</a>
+            <a href="reg.html">Регистрация</a>
+            <hr>
+            <p>//   Info   //</p>
+            
+            <a href="contacts">Контакты</a>
+        </nav>
+
+        <div class="content">
+            <div class="line">
+                <div class="tagline">Видеомонтаж</div>
+            </div>
+            <div class="line">
+                <div class="about"><p>Описание монтажа, возможных предоставляемых услуг. *какой-то текст для поддержания видимости большого объема текста который по идее должен тут быть*</p></div>
+                <div class="img50"><img src="img_placeholder.jpg"></div>
+            </div>
+            <div class="line">
+                <div class="img50 reflect"><img src="img_placeholder.jpg"></div>
+                <div class="about"><p>Описание дизайна, возможных предоставляемых услуг. *какой-то текст для поддержания видимости большого объема текста который по идее должен тут быть* *какой-то текст для поддержания видимости большого объема текста который по идее должен тут быть*</p></div>
+            </div>
+            <div class="line">
+                <div class="calculator">
+                    <p id="inputTime">Длительность исходного материала: 20 минут</p>
+                    <input id="inputTimeRange" class="range" oninput="inputTime()" type="range" min="20" max="600" step="20" value="20">
+                    <p id="outputTime">Длительность необходимого ролика: 5 минут</p>
+                    <input id="outputTimeRange" class="range" oninput="inputTime()" type="range" min="5" max="60" step="1" value="5">
+                    <p><input class="check" oninput="inputTime()" id="add1" type="checkbox">
+                    Сложный монтаж</p>
+                    <p><input class="check" oninput="inputTime()" id="add2" type="checkbox">
+                    Срочное выполнение</p>
+                    <div class="cost">
+                        <p id="cost">~800р.</p>
+                    </div>
+                </div>
+                <div class="goReg">
+                    <p class="about">Текст про то, почему пользователю необходимо зарегистрироваться Текст про то, почему пользователю необходимо зарегистрироваться Текст про то, почему пользователю необходимо зарегистрироваться Текст про то, почему пользователю необходимо зарегистрироваться</p>
+                    <button>Зарегистрироваться >></button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="footer">
+            <div class="urls">*Какие-то ссылки*</div>
+            <div class="creators">designed by WolframX</div>
+        </div>
+
+
+        <script>
+            function inputTime() {
+                text1 = document.getElementById("inputTime")
+                range1 = document.getElementById("inputTimeRange")
+                cost = document.getElementById("cost")
+                range2 = document.getElementById("outputTimeRange")
+                text2 = document.getElementById("outputTime")
+                text1.textContent = "Длительность исходного материала: " + String(range1.value) + " минут"
+                text2.textContent = "Длительность необходимого ролика: " + String(range2.value) + " минут"
+                add1 = document.getElementById("add1")
+                add2 = document.getElementById("add2")
+                costNum = range1.value * 15 + range2.value * 100
+                if (add1.checked) {
+                    costNum = costNum * 1.1
+                }
+                if (add2.checked) {
+                    costNum = costNum * 1.1
+                }
+                costNum = Math.round(costNum)
+                cost.textContent = "~" + String(costNum) + "р."
+            }
+
+        </script>
+    </body>
+</html>

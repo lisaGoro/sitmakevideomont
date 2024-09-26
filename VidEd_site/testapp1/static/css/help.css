@@ -1,0 +1,44 @@
+.helpForm p {
+    font-family: "MyriadProLight";
+    font-size: 30px;
+}
+.helpForm form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.helpForm {
+    width: 100%;
+}
+#topicHelp {
+    width: 60%;
+    font-size: 25px;
+    border-radius: 10px;
+    padding: 10px;
+}
+#descriptionHelp {
+    width: 60%;
+    font-size: 25px;
+    border-radius: 10px;
+    padding: 10px;
+    height: 300px;
+    resize: none;
+}
+#callbackHelp {
+    width: 60%;
+    font-size: 25px;
+    border-radius: 10px;
+    padding: 10px;
+}
+#sendHelp {
+    margin-top: 30px;
+    width: calc(60% + 20px);
+    height: 50px;
+    background-color: white;
+    font-size: 30px;
+    font-family: "MyriadPro";
+    border-radius: 10px;
+    animation: transfusion 10s infinite ;
+    cursor: pointer;
+}

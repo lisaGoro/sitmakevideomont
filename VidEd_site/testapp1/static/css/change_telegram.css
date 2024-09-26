@@ -1,0 +1,60 @@
+
+.telegram_change_box {
+    box-shadow: 0px 0px 10px black;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 30px;
+    padding: 50px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    font-family: 'MyriadProLight';
+    font-size: 35px;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(58, 58, 58);
+}
+.form_tg_1 {
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    font-family: 'MyriadPro';
+    width: 80%;
+    text-align: start;
+}
+.telegram_change_box input {
+    font-size: 30px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: none;
+    padding: 10px;
+}
+.content {
+    height: calc(100vh - 213px);
+}
+.line {
+    height: 100%;
+}
+.nextBut {
+    cursor: pointer;
+    width: 100%;
+}
+.code_input {
+    width: 30px;
+    font-size: 50px !important;
+
+}
+.form_tg_2 {
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    font-family: 'MyriadPro';
+    width: 80%;
+    text-align: start;
+}
+.form_tg_2 div {
+    display: flex;
+    flex-direction: row;
+}

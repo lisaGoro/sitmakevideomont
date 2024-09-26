@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>TEST</title>
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <link rel="stylesheet" type="text/css" href="login.css">
+        <script src="index.js"></script>
+    </head>
+    <body>
+        <div class="hat" id="hat">
+        
+            <div class="logoBox"><img src="logo1.png"><a href="index.html"><h1 id="title">Crystal Studio</h1></a></div>
+            <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="menu.png"></div> 
+        </div>
+        <nav id="menu">
+            <p>//   Order   //</p>
+            
+            <a href="VidEd.html">Видеомонтаж</a>
+            <a href="Prog.html"><del>Программирование</del></a>
+            <a href="Design.html"><del>Веб-дизайн</del></a>
+            <hr>
+            <p>//   Authentication   //</p>
+            
+            <a href="login.html">Вход</a>
+            <a href="reg.html">Регистрация</a>
+            <hr>
+            <p>//   Info   //</p>
+            
+            <a href="contacts">Контакты</a>
+        </nav>
+    <!-- страница авторизации -->
+    <div class="content">
+        <div class="line">
+            <div class="tagline">Авторизация</div>
+            <div class="authcard">
+                <div class="text-field text-field_floating-2">
+                    <input class="text-field__input" placeholder="Логин">
+                    <label class="text-field__label">Логин/Email</label>
+                </div>
+                <div class="text-field text-field_floating-2">
+                    <input class="text-field__input" type="password" id="password-input" placeholder="Пароль">
+                    <label class="text-field__label">Пароль</label>
+                    <a href="#" class="password-control" onclick="show_hide_password(this)"></a>
+                </div>
+                <div class="text-field text-field_floating-2">
+                    <button class="button">Войти</button>
+                </div>
+                <div class="text-field text-field_floating-2">
+                    <a>Войти другим способом</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- футер -->
+    <div class="footer">
+        <div class="urls">*Какие-то ссылки*</div>
+        <div class="creators">designed by WolframX</div>
+    </div>
+
+    <script>
+        function showMenu() {
+            menu = document.getElementById("menu")
+            menu.classList.toggle("activeMenu")
+            menuBut = document.getElementById("menuBut")
+            menuBut.classList.toggle("acivateBut")
+            hat = document.getElementById("hat")
+            hat.classList.toggle("hatBlack")
+        }
+        function show_hide_password(target) {
+            var input = document.getElementById('password-input');
+            if (input.getAttribute('type') == 'password') {
+                target.classList.add('view');
+                input.setAttribute('type', 'text');
+            } else {
+                target.classList.remove('view');
+                input.setAttribute('type', 'password');
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>

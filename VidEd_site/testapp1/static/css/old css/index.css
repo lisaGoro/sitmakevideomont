@@ -1,0 +1,74 @@
+
+nav a {
+    background-color: #201a92;
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: "MyriadProLight";
+    padding: 10px;
+    margin-right: 5px;
+}
+
+nav {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+#formlog {
+  display: flex;
+  flex-direction: column;
+  
+  margin-top: 20vh;
+  align-items: center;
+}
+
+.okbut {
+  background-color: #201a92;
+  color: white;
+  width: 25vw;
+}
+.cancelbut {
+  background-color: rgb(44, 51, 66);
+  color: white;
+  width: 25vw;
+  margin-right: 10px;
+}
+
+#buts1 {
+  display: flex;
+  flex-direction: row;
+  font-size: 30px;
+}
+
+/* #buts1 a {
+  color:white;
+  background-color: #201a92;
+} */
+
+input {
+  margin-top: 10px; 
+  width: 50vw;
+  font-size: 30px;
+}
+.creators {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  height: 100px;
+}
+
+
+@font-face {
+  
+    font-family: "MyriadPro"; 
+    src: url("../fonts/MYRIADPRO-REGULAR.OTF") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+  } 
+  @font-face {
+  
+    font-family: "MyriadProLight"; 
+    src: url("../fonts/MyriadPro-Light.otf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+  } 

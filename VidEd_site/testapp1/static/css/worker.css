@@ -1,0 +1,140 @@
+.profileblock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 45vw;   
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 0px 0px 20px rgb(89, 89, 89);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 30px;
+    margin-bottom: 30px;
+}
+.avatarProfile {
+    position: relative;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.avatarProfile img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profileblock p {
+    text-align: center;
+    font-size: 35px;
+    font-family: "MyriadPro";
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.username {
+    font-size: 20px;
+    font-family: "MyriadProLight";
+}
+body {
+    background-color: white;
+}
+.profileblock button {
+    width: 15vw;
+    font-size: 25px;
+    height: 40px;
+    border-radius: 20px;
+    /* border: none; */
+    cursor: pointer;
+    margin-top: 10px;
+}
+.abilitiesBlock {
+    width: 45vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+.progs div {
+    display: flex;
+    flex-direction: row;
+}
+.skills div {
+    display: flex;
+    flex-direction: row;
+}
+.progs input {
+    margin-right: 10px;
+}
+.progs p {
+    font-family: "MyriadPro";
+}
+.skills p {
+    font-family: "MyriadPro";
+}
+.progs {
+    height: 60px;
+    overflow: hidden;
+    transition: height 1s;
+}
+.progBut {
+    width: 100%;
+    height: 40px;
+    font-size: 40px;
+    font-family: "MyriadPro";
+    background-color: rgb(46, 46, 46);
+    padding-bottom: 10px;
+    padding-top: 5px;
+    color: white;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+    
+}
+.skills {
+    height: 60px;
+    overflow: hidden;
+    transition: height 1s;
+}
+.skillBut {
+    width: 100%;
+    height: 40px;
+    font-size: 40px;
+    font-family: "MyriadPro";
+    background-color: rgb(46, 46, 46);
+    padding-bottom: 10px;
+    padding-top: 5px;
+    color: white;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.open {
+    height:fit-content;
+    transition: height 1s;
+}
+#savebut {
+    width: 100%;
+    height: 60px;
+    font-size: 40px;
+    font-family: "MyriadPro";
+    border: none;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+@media (orientation: portrait) {
+    .abilitiesBlock {
+        width: 90%;
+    }
+    .profileblock {
+        width: 90%;
+    }
+}

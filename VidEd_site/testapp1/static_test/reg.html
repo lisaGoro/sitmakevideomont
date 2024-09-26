@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sing In</title>
+    <link rel="stylesheet" type="text/css" href="reg.css">
+</head>
+
+<body>
+    <!-- шапка -->
+    <div class="hat" id="hat">
+        <div class="logoBox"><img src="logo1.png"><a href="index.html">
+                <h1 id="title">Crystal Studio</h1>
+            </a></div>
+        <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="menu.png"></div>
+    </div>
+    <!-- блок выплывающего меню -->
+    <nav id="menu">
+        <p>// Order //</p>
+
+        <a href="Order.html">Видеомонтаж</a>
+        <a href="Order.html"><del>Программирование</del></a>
+        <a href="Order.html"><del>Веб-дизайн</del></a>
+        <hr>
+        <p>// Authentication //</p>
+
+        <a href="login.html">Вход</a>
+        <a href="reg.html">Регистрация</a>
+        <hr>
+        <p>// Info //</p>
+
+        <a href="contacts">Контакты</a>
+    </nav>
+    <!-- страница регистрации -->
+    <div class="content">
+        <div class="line">
+            <div class="tagline">Регистрация</div>
+            <div class="card">
+                <!-- сделать <form> вместо div и вместо button - <input type="submit" value="Зарегистрироваться"> </form>-->
+                <form>
+                    <div class="text-field text-field_floating-2">
+                        <input class="text-field__input" name="email" type="email" placeholder="Почта">
+                        <label class="text-field__label" for="email">Почта</label>
+                    </div>
+
+                    <div class="text-field text-field_floating-2">
+                        <input class="text-field__input" name="login" type="text" placeholder="Логин">
+                        <label class="text-field__label" for="login">Логин</label>
+                        <p>*правила для логина или ошибки при вводе текста*правила для логина</p>
+                    </div>
+                    <div class="text-field text-field_floating-2">
+                        <input class="text-field__input" name="password" type="password" id="password-input"
+                            placeholder="Пароль">
+                        <label class="text-field__label" for="password">Пароль</label>
+                        <a href="#" class="password-control" onclick="show_hide_password(this)"></a>
+                        <p>*правила для пароля</p>
+                    </div>
+                    <div class="text-field text-field_floating-2">
+                        <!-- <button class="button">Зарегистрироваться</button> -->
+                    </div>
+                    <input class="button" type="submit" value="Зарегистрироваться">
+                </form>
+                <!-- <div class="text-field text-field_floating-2">
+                    <a>Войти другим способом</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- футер -->
+    <div class="footer">
+        <div class="urls">*Какие-то ссылки*</div>
+        <div class="creators">designed by WolframX</div>
+    </div>
+
+    <script>
+        function showMenu() {
+            menu = document.getElementById("menu")
+            menu.classList.toggle("activeMenu")
+            menuBut = document.getElementById("menuBut")
+            menuBut.classList.toggle("acivateBut")
+            hat = document.getElementById("hat")
+            hat.classList.toggle("hatBlack")
+        }
+        function show_hide_password(target) {
+            var input = document.getElementById('password-input');
+            if (input.getAttribute('type') == 'password') {
+                target.classList.add('view');
+                input.setAttribute('type', 'text');
+            } else {
+                target.classList.remove('view');
+                input.setAttribute('type', 'password');
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>

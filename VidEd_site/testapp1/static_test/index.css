@@ -1,0 +1,362 @@
+
+
+#title {
+    font-family: "MyriadPro";
+    font-style: italic;
+    font-size: xx-large;
+    margin: 20px;
+}
+body {
+    margin: 0;
+}
+nav a {
+    color: black;
+    text-decoration: none;
+}
+.logoBox {
+    display: flex;
+    flex-direction: row;
+}
+.hat a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.7s;
+}
+.logoBox img {
+    height: 80px;
+    width: 80px;
+
+}
+.menuBut {
+    height: 50px;
+    width: 50px;
+    margin: 15px;
+    cursor: pointer;
+}
+.content {
+    min-height: calc(95vh - 163px);
+}
+.hat {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0px 0px 15px rgb(59, 59, 59);
+    transition: background-color 0.7s, box-shadow 0.7s;
+}
+.menuButImg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(0);
+    filter: invert(0);
+    transition: transform 0.7s, filter 0.7s;
+}
+.hatBlack {
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: none;
+    transition: background-color 0.7s, box-shadow 0.7s;
+    
+}
+.hatBlack a {
+    color: white;
+    transition: color 0.7s;
+}
+.acivateBut {
+    transform: rotate(-180deg);
+    filter: invert(1);
+    transition: transform 0.7s, filter 0.7s;
+}
+hr {
+    width: 10%;
+    margin-top: 10vh;
+}
+nav {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 100%;
+    transition: all 0.7s;
+    z-index: 10;
+}
+nav a{
+    color: white;
+    font-size: calc(100vh / 1080 * 45);
+    font-family: "MyriadProLight";
+    margin-bottom: 20px;
+}
+.activeMenu {
+
+    left: 0;
+    transition: all 0.7s;
+}
+nav p {
+    white-space: pre;
+    color:white;
+    font-size: calc(100vh / 1080 * 20);
+    margin-bottom: 0;
+}
+.line {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+.tagline {
+    width: 40vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    font-family: "Recolors"; 
+    animation: loadtag 0.5s;
+    position: relative;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.img50 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(1);
+    transition: filter 0.5s;
+}
+.img50 img:hover {
+    filter: brightness(0.9);
+    transition: filter 0.5s;
+}
+.img50 {
+    width: 50vw;
+    min-height: 20vw;
+    height: 100%;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    animation: transfusion 10s infinite, loadimg50 0.5s;
+}
+.reflect {
+    animation: transfusion 10s infinite, loadimg50_1 0.5s;
+}
+.Term {
+    
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    border-top: black double;
+    border-bottom: black double;
+    border-width: 7px;
+    padding: 20px;
+    margin-top: 100px;
+    font-family: "MyriadPro";
+    white-space: pre;
+}
+.cardRoulette {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-x:auto;
+    
+}
+.card {
+    width: 40vw;
+    min-width: 500px;
+    min-height: 770px;
+    margin-right: 100px;
+    border-radius: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+    font-family: "MyriadPro";
+    box-shadow: 0px 0px 20px rgb(89, 89, 89);
+    animation: loadcard 1s;
+}
+.card:hover {
+    background: linear-gradient(to top right, white, #f3eaff, white, #f3eaff, white);
+    animation: shine 3s infinite linear, loadcard 1s;
+    transition: all 1s;
+    cursor: pointer;
+}
+.card img {
+    width: 80%;
+    height: 200px;
+    object-fit: cover;
+    margin: 20px;
+    border-radius: 20px;
+}
+.card .name {
+    font-size: 40px;
+}
+.card:hover .name {
+    animation: transfusionText 5s infinite;
+}
+.glitchText {
+    font-family: "Glitch";
+    font-size: 34px;
+    animation: glitch 5s infinite;
+    margin: 0;
+}
+.about {
+    width: 40vw;
+    min-height: 20vw;
+    min-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 30px;
+    font-family: "MyriadPro";
+    text-align:justify;
+}
+.footer {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 20px;
+    width: 100%;
+}
+.footer .urls {
+    margin-right: auto;
+    margin-left: 30px;
+}
+.footer .creators {
+    margin-left: auto;
+    margin-right: 30px;
+}
+@keyframes glitch {
+    0% {
+        text-shadow: 2px 2px #f306ff;
+    }
+    2% {
+        text-shadow: -10px -3px #5421fb;
+    }
+    4% {
+        text-shadow: 15px 5px #c724e4;
+    }
+    6% {
+        text-shadow: none;
+    }
+    56% {
+        text-shadow: none;
+    }
+    58% {
+        text-shadow: -12px 4px #7a24e4;
+    }
+    60% {
+        text-shadow: 20px 4px #5424e4;
+    }
+    62% {
+        text-shadow: -8px -2px #c424e4;
+    }
+    64% {
+        text-shadow: none;
+    }
+}
+@keyframes shine {
+    from {
+        background-position: 0 40vw;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+@keyframes transfusionText {
+    from {
+        text-shadow: 0px 0px 50px #067eff;
+    }
+    to {
+        text-shadow: 0px 0px 50px #067eff;
+    }
+    50% {
+        text-shadow: 0px 0px 50px #f306ff;
+    }
+}
+@keyframes transfusion {
+    from {
+        box-shadow: 5px 5px 10px #067eff;
+    }
+    to {
+        box-shadow: 5px 5px 10px #067eff;
+    }
+    50% {
+        box-shadow: 5px 5px 10px #f306ff;
+    }
+}
+@keyframes loadtag {
+    from {
+        right: 100%;
+    }
+    to {
+        right: 0;
+    }
+}
+@keyframes loadimg50 {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 0;
+    }
+}
+@keyframes loadimg50_1 {
+    from {
+        right: 100%;
+    }
+    to {
+        right: 0;
+    }
+}
+@keyframes loadcard {
+    from {
+        height: 20vw;
+    }
+    to {
+        height: 40vw;
+    }
+}
+
+@font-face {
+  
+    font-family: "MyriadPro"; 
+    src: url("MYRIADPRO-REGULAR.OTF") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+  } 
+  @font-face {
+  
+    font-family: "MyriadProLight"; 
+    src: url("MyriadPro-Light.otf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+  } 
+
+  @font-face {
+  
+    font-family: "Recolors"; 
+    src: url("RecolorsPersonalUse.otf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+  } 
+  @font-face {
+    font-family: "Glitch";
+    src: url("slifted.otf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+  }

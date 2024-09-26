@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>TEST</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/reg.css' %}">
+        <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+        <script src="{% static 'js/index.js' %}"></script>
+    </head>
+<body>
+<div class="hat" id="hat">
+    <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/">
+            <h1 id="title">Crystal Studio</h1>
+        </a></div>
+    <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div>
+</div>
+<nav id="menu">
+    <p>// Order //</p>
+
+    <a href="/VidEd/">Видеомонтаж</a>
+    <a href="/Prog/"><del>Программирование</del></a>
+    <a href="/Design/"><del>Веб-дизайн</del></a>
+    <hr>
+    <p>// Authentication //</p>
+
+    <a href="/login/">Вход</a>
+    <a href="/reg/">Регистрация</a>
+    <hr>
+    <p>// Info //</p>
+
+    <a href="/contacts/">Контакты</a>
+</nav>
+<!-- страница регистрации -->
+<div class="content">
+    <div class="line">
+        <div class="tagline">Регистрация</div>
+        <div class="authcard">
+            <div class="text-field_floating-2">
+                <button id="back" onclick="back('email')" class="but_act hide_back">Назад</button>
+            </div>
+            <div id="errors" class="errors">
+                <p id="errorsText" class="glitchText"></p>
+            </div>
+
+            <div id="email_div" class="text-field text-field_floating-2">
+                <input id="email_input" class="text-field__input" type="email" placeholder="Почта">
+                <label class="text-field__label">Почта</label>
+            </div>
+
+            <div id="login_div" class="text-field text-field_floating-2 hide">
+                <input id="login_input" class="text-field__input" placeholder="Логин">
+                <label class="text-field__label">Логин</label>
+            </div>
+
+            <div id="password_div1" class="text-field text-field_floating-2 hide">
+                <input id="password_input1" class="text-field__input" type="password" placeholder="Пароль">
+                <label class="text-field__label">Пароль</label>
+                <a href="#" class="password-control" onclick="show_hide_password2(this, 1)"></a>
+            </div>
+            <div id="password_div2" class="text-field text-field_floating-2 hide">
+                <input id="password_input2" class="text-field__input" type="password" placeholder="Повторите пароль">
+                <label class="text-field__label">Повторите пароль</label>
+                <a href="#" class="password-control" onclick="show_hide_password2(this, 2)"></a>
+            </div>
+
+            <div class="text-field_floating-2">
+                <button id="forward" onclick="forward('email')" class="but_act">Далее</button>
+            </div>
+            <div class="text-field_floating-2">
+                <button id="singin" onclick="singin()" class="but_act hide_back">Зарегистрироваться</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- футер -->
+<div class="footer">
+    <div class="urls">*Какие-то ссылки*</div>
+    <div class="creators">designed by WolframX</div>
+</div>
+
+<script>
+    function show_hide_password2(target, num) {
+        if(num==1)
+            var input = document.getElementById('password_input1');
+        else
+            var input = document.getElementById('password_input2');
+        if (input.getAttribute('type') == 'password') {
+            target.classList.add('view');
+            input.setAttribute('type', 'text');
+        } else {
+            target.classList.remove('view');
+            input.setAttribute('type', 'password');
+        }
+        return false;
+    }
+    emailtext = "";
+    logintext = "";
+    passwordtext = "";
+    function forward(act) {
+        switch (act) {
+            case 'email':
+                emailtext = document.getElementById("email_input").value;
+                if (emailtext != "") {
+                    document.getElementById("forward").setAttribute("onClick", "forward('login')");
+                    document.getElementById("back").setAttribute("onClick", "back('login')");
+                    document.getElementById("email_div").classList.add("hide");
+                    document.getElementById("login_div").classList.remove("hide");
+                    document.getElementById("back").classList.remove("hide_back");
+                    document.getElementById("errors").classList.remove("errorsActive");
+                }
+                else {
+                    document.getElementById("errors").classList.add("errorsActive");
+                    document.getElementById("errorsText").textContent = "Введите данные";
+                }
+                break;
+            case 'login':
+                logintext = document.getElementById("login_input").value;
+                if (logintext != "") {
+                    if (check_login(logintext)) {
+                        document.getElementById("forward").setAttribute("onClick", "forward('password')");
+                        document.getElementById("back").setAttribute("onClick", "back('password')");
+                        document.getElementById("login_div").classList.add("hide");
+                        document.getElementById("forward").classList.add("hide");
+                        document.getElementById("password_div1").classList.remove("hide");
+                        document.getElementById("password_div2").classList.remove("hide");
+                        document.getElementById("singin").classList.remove("hide_back");
+                        document.getElementById("errors").classList.remove("errorsActive");
+                    }
+                }
+                else {
+                    document.getElementById("errors").classList.add("errorsActive");
+                    document.getElementById("errorsText").textContent = "Введите данные";
+                }
+                break;
+        }
+    }
+    function forward2() {
+        document.getElementById("forward").setAttribute("onClick", "forward('password')");
+                        document.getElementById("back").setAttribute("onClick", "back('password')");
+                        document.getElementById("login_div").classList.add("hide");
+                        document.getElementById("forward").classList.add("hide");
+                        document.getElementById("password_div1").classList.remove("hide");
+                        document.getElementById("password_div2").classList.remove("hide");
+                        document.getElementById("singin").classList.remove("hide_back");
+                        document.getElementById("errors").classList.remove("errorsActive");
+    }
+    function back(act) {
+        switch (act) {
+            case 'login':
+                document.getElementById("forward").setAttribute("onClick", "forward('email')");
+                document.getElementById("back").setAttribute("onClick", "back('email')");
+                document.getElementById("email_div").classList.remove("hide");
+                document.getElementById("login_div").classList.add("hide");
+                document.getElementById("back").classList.add("hide_back");
+                document.getElementById("login_input").value = "";
+                document.getElementById("errors").classList.remove("errorsActive");
+                break;
+            case 'password':
+                document.getElementById("forward").setAttribute("onClick", "forward('login')");
+                document.getElementById("back").setAttribute("onClick", "back('login')");
+                document.getElementById("login_div").classList.remove("hide");
+                document.getElementById("forward").classList.remove("hide");
+                document.getElementById("password_div1").classList.add("hide");
+                document.getElementById("password_div2").classList.add("hide");
+                document.getElementById("singin").classList.add("hide_back");
+                document.getElementById("password_input1").value = "";
+                document.getElementById("password_input2").value = "";
+                document.getElementById("errors").classList.remove("errorsActive");
+                break;
+        }
+    }
+    function check_login(log) {
+        $.ajax({
+            url: '/check_login/',
+            type: 'POST',
+            data: {
+                login: log
+                // csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.text == "IsLogin") {
+                    errors = document.getElementById("errors")
+                    errorstext = document.getElementById("errorsText")
+                    errors.classList.add("errorsActive")
+                    errorstext.textContent = "Такой логин уже существует"
+                }
+                else if (data.text == "IsNotLogin") {
+                    forward2()
+                    return true;
+                }
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                errors = document.getElementById("errors")
+                errorstext = document.getElementById("errorsText")
+                errors.classList.add("errorsActive")
+                errorstext.textContent = "Ошибка подключения";
+            }
+        });
+    }
+
+    function singin() {
+        pass1 = document.getElementById("password_input1").value;
+        pass2 = document.getElementById("password_input2").value;
+        if (pass1 != pass2) {
+            errors = document.getElementById("errors");
+            errorstext = document.getElementById("errorsText");
+            errors.classList.add("errorsActive");
+            errorstext.textContent = "Пароли не совпадают";
+        }
+        else {
+            passwordtext = pass1;
+            if (emailtext != "" && logintext != "" && passwordtext != "") {
+                $.ajax({
+                    url: '/singin/',
+                    type: 'POST',
+                    data: {
+                        email: emailtext,
+                        login: logintext,
+                        password: passwordtext
+                        // csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.text == "NotSingin") {
+                            errors = document.getElementById("errors")
+                            errorstext = document.getElementById("errorsText")
+                            errors.classList.add("errorsActive")
+                            errorstext.textContent = "Неудалось зарегистрироваться"
+                        }
+                        else if (data.text == "NiceSignin") {
+                            alert("Вы успешно зарегистрированы");
+                            window.location.href = '/profile/'
+                        }
+
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        errors = document.getElementById("errors")
+                        errorstext = document.getElementById("errorsText")
+                        errors.classList.add("errorsActive")
+                        errorstext.textContent = "Ошибка подключения";
+                    }
+                });
+            }
+            else {
+                errors = document.getElementById("errors")
+                errorstext = document.getElementById("errorsText")
+                errors.classList.add("errorsActive")
+                errorstext.textContent = "Введите данные"
+            }
+            alert(`Всё четенько. ${emailtext}, ${logintext}, ${passwordtext}`);
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+.hide {
+    display: none;
+}
+
+.hide_back{
+    visibility: hidden;
+}
+
+.but_act{
+    margin-top: 5vh;
+    width: 100%;
+    height: calc(5vh + 15px);
+    background-color: white;
+    font-size: 25px;
+    border-radius: 10px;
+    border-color: #bdbdbd;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    animation: anim_grad_boxshadow 10s infinite;
+}
+
+.but_act:hover {
+    cursor: pointer;
+}

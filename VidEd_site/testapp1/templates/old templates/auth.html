@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
+    
+</head>
+<body>
+    <nav>
+        <a href="../index/">Главная</a>
+        <a href="">Заказ</a>
+        <a href="">Контакты</a>
+        <a href="../profile/">Профиль</a>
+        <a href="../reg/">Регистрация</a>
+    </nav>
+    <form id="formlog" method="post" action="login/">
+        {% csrf_token %}
+        <input name="NameOrEmail" placeholder="Имя или E-mail">
+        <input name="password" type="password" placeholder="Пароль">
+        <div id="buts1">
+        
+        <input class="cancelbut" onclick="location.href='../index/'" type="button"  value="Назад">
+        
+        <input class="okbut" type="submit" value="Вход">
+        </div>
+    </form>
+    
+
+    <script>
+        // function cancel() {
+        //     var x = new XMLHttpRequest();
+        //     x.open("GET", "../index/");
+        //     // x.onload = function() {
+        //     //     document.textContent = x.responseText
+        //     // }
+        //     x.send(null);
+        // }
+    </script>
+
+</body>
+</html>

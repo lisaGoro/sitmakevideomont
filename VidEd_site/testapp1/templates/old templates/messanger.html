@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/messanger.css' %}">
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+</head>
+<body>
+    <div class="backButtom">
+        <a href="/userlist/">
+            <img src="{% static 'img/arrow_5.png' %}">
+        </a>
+    </div>
+
+    <div class="hat">
+        <div class="user_avatar"><img src="{% static 'img/avatar1.png' %}"></div>
+        <div class="user_namebox">
+        <div class="user_name" id="user_name">{{username}}<div class="user_status"></div></div>
+        <div class="connection" id="connection">Соединение...</div>
+        </div> 
+    </div>
+
+
+
+    <div class="message_box" id="message_box">
+    
+
+    {%for i, j, is_inner in text%}
+    {% if is_inner %}
+    <div class="message">
+        <div class="message_outer">
+            <div class="message_bubble"><p class="message_text">{{i}}</p>
+            <div class="message_time">{{j}}</div></div>
+            <div class="message_spacer"></div>
+        </div>
+        <div class="message_status"></div>
+    </div>
+    {% else %}
+    <div class="message">
+        <div class="message_inner">
+            <div class="message_bubble"><p class="message_text">{{i}}</p>
+            <div class="message_time">{{j}}</div></div>
+            <div class="message_spacer"></div>
+        </div>
+        <div class="message_status"></div>
+    </div>
+    {% endif %}
+    {%endfor%}
+
+    </div>
+
+
+
+    <div class="foot">
+        <div class="typing_message">
+            <form action="/messanger/" id="messageForm" method="post">
+                {% csrf_token %}
+                <input id="new_message_text" name="new_message_text" autofocus autocomplete="off" placeholder="Сообщение...">
+                <input id="send_message" type="submit" value="" style="background-image: url({% static 'img/arrow_6.png' %});">
+            </form>
+        </div>
+    </div>
+    <div id="hidden_id" style="visibility: hidden; width: 0; height: 0; position: absolute;">{{last_id}}</div>
+
+<script>
+    function scrollToBottom() {
+            var messageBox = document.querySelector('.message_box');
+            messageBox.scrollTop = messageBox.scrollHeight;
+        }
+    
+    function refreshMessages() {
+        $.ajax({
+                url: '/messanger/',
+                type: 'POST',
+                data: {
+                    text: "WAIT_NEW_MESSAGES#" + $('#hidden_id').text(),
+                    address: $('#user_name').text()
+                    // csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    for (let i = 0; i < data.text.length; i++) {
+                    let messageblock = document.createElement('div')
+                    messageblock.className = "message";
+                    messageblock.innerHTML = "<div class='message_outer'> <div class='message_bubble'><p class='message_text'>" + data.text[i] + "</p> <div class='message_time'>" + data.time[i] + "</div></div> <div class='message_spacer'></div> </div><div class='message_status'></div>"
+                    msgbox = document.getElementById("message_box")
+                    msgbox.appendChild(messageblock)
+                    
+                    document.getElementById('hidden_id').textContent = data.last_id
+                    
+                    
+                    
+
+                    scrollToBottom()
+                    }
+                    conn = document.getElementById('connection')
+                    conn.hidden = true
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    conn = document.getElementById('connection')
+                    conn.hidden = false
+                }
+            });
+        
+    }
+    setInterval(refreshMessages, 2000)
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        scrollToBottom();
+    });
+    
+
+    $(document).ready(function() {
+        $('#messageForm').on('submit', function(e) {
+            e.preventDefault();
+            if (document.getElementById("new_message_text").value != "") {
+
+                $.ajax({
+                url: '/messanger/',
+                type: 'POST',
+                data: {
+                    text: $('#new_message_text').val(),
+                    address: $('#user_name').text()
+                    // csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    let messageblock = document.createElement('div')
+                    messageblock.className = "message";
+                    messageblock.innerHTML = "<div class='message_inner'> <div class='message_bubble'><p class='message_text'>" + data.text + "</p> <div class='message_time'>" + data.time + "</div></div> <div class='message_spacer'></div> </div><div class='message_status'></div>"
+                    msgbox = document.getElementById("message_box")
+                    msgbox.appendChild(messageblock)
+
+                    document.getElementById('hidden_id').textContent = data.last_id
+
+                    document.getElementById("new_message_text").value = ""
+                    scrollToBottom()
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('Error occurred: ' + errorThrown);
+                }
+            });
+            }
+        });
+    });
+</script>    
+
+</body>
+</html>

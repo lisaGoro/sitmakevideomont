@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>Заявка</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin_panel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sales.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+</head>
+
+<body>
+    <div class="hat" id="hat">
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/">
+                <h1 id="title">Crystal Studio</h1>
+            </a></div>
+        <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div>
+    </div>
+    
+    <div class="content">
+        <div class="line">
+            <div class="backBut" onclick="window.location.href='/admin_panel/'"><img src="{% static 'img/arrow_5.png' %}"></div>
+            <div class="salesTable">
+
+                <div class="salesRow">
+                    <div class="salesPrice">Общая цена</div>
+                    <div class="salesManager">
+                        <p class="worker">Менеджер</p>
+                    </div>
+
+                    <div class="salesWorker">
+                        <p class="worker">Исполнитель</p>
+                    </div>
+                    <div class="status">
+                        Статус
+                    </div>
+                </div>
+
+                <div class="salesRow">
+                    <div class="salesPrice">10000р</div>
+                    <div class="salesManager">
+                        <p class="worker">Whats</p>
+                        <p class="percent">15%</p>
+                        <p class="cost">1500</p>
+                    </div>
+
+                    <div class="salesWorker">
+                        <p class="worker">Veynud</p>
+                        <p class="percent">60%</p>
+                        <p class="cost">6000</p>
+                    </div>
+                    <div class="status">
+                        Выплачено
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="urls">*Какие-то ссылки*</div>
+        <div class="creators">designed by WolframX</div>
+    </div>
+    
+
+
+
+    <script>
+        
+    </script>
+</body>
+</html>

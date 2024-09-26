@@ -1,0 +1,51 @@
+.calculator {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    font-size: 30px;
+    font-family: "MyriadPro";
+    padding: 20px;
+    width: 30vw;
+    box-shadow: 0px 0px 20px rgb(89, 89, 89);
+}
+.range {
+    width: 100%;
+}
+.check {
+    height: 20px;
+    width: 20px;
+
+}
+.goReg {
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.goReg button {
+    font-size: 40px;
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+    background-color: white;
+    cursor: pointer;
+    animation: transfusion 10s infinite ;
+}
+.goReg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@font-face {
+  
+    font-family: "MyriadPro"; 
+    src: url("MYRIADPRO-REGULAR.OTF") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+  } 

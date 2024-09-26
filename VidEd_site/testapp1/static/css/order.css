@@ -1,0 +1,276 @@
+.hide {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+    background-color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    border-color: #bdbdbd;
+    overflow: hidden;
+    /* padding: 0; */
+    height: 5vmin;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 1vw;
+}
+
+.content-order {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.order {
+    width: 80vw;
+}
+
+.order p {
+    font-size: 20px;
+}
+
+.order img {
+    margin-left: 1vw;
+    cursor: pointer;
+}
+.information p {
+    font-family: 'MyriadPro';
+    
+}
+.information input {
+    font-family: 'MyriadPro';
+}
+.information {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 1vw;
+    box-shadow: 0px 0px 10px rgb(89, 89, 89);
+    border-radius: 10px;
+}
+
+.information-title {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.information-title p,
+.files-title p,
+.links-title p {
+    font-size: 25px;
+}
+
+.information-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+table {
+    width: 47%;
+}
+
+td {
+    max-width: 20vw;
+}
+
+
+.info-title,
+.info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+
+.profile-worker {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 1vw;
+}
+
+.profile-worker img {
+    position: relative;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    margin: 1vmin;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-worker p {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.description {
+    width: 47%;
+}
+
+.description-info {
+    padding-right: 1vw;
+}
+
+#description {
+    margin-right: 1vw;
+}
+
+#description-i {
+    resize: none;
+    width: 35vw;
+    height: 180px;
+}
+
+#name-i,
+#status-i,
+#date-i,
+#description-i {
+    font-size: 18px;
+}
+
+.files-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 1vw;
+    padding-bottom: 1vw;
+    margin-top: 30px;
+    box-shadow: 0px 0px 10px rgb(89, 89, 89);
+    border-radius: 10px;
+}
+
+.files,
+.links {
+    /* background-color: aquamarine; */
+    width: 47%;
+}
+
+.files-title,
+.links-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.file {
+    background-color: #ececec;
+    border-radius: 10px;
+    height: 45px;
+    padding-left: 1vw;
+    width: 93%;
+    font-size: 20px;
+    margin-bottom: 1vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.file button {
+    height: auto;
+}
+
+.add-file {
+    display: flex;
+    margin: auto;
+    height: auto;
+}
+
+
+#upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    outline: 2px dashed #5d5d5d;
+    outline-offset: -12px;
+    /* background-color: #e0f2f7; */
+    color: #1f3c44;
+    margin-top: 5vh;
+    width: 80%;
+    /* animation: upload_anim_grad 10s infinite; */
+    background: linear-gradient(to bottom, #c5e1ff, #fddaff);
+    border-radius: 10px;
+    border: solid 5px;
+}
+
+#file-up {
+    font-weight: bold;
+    height: 100%;
+    width: 100%;
+    display: block;
+    margin-top: 5px;
+}
+.add-file button{
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#file-up:hover {
+    cursor: pointer;
+}
+
+#add-file input[type=file] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    position: absolute;
+    z-index: -10;
+}
+
+#file-up.focus {
+    outline: 1px solid #0078d7;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.file p {
+    margin: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#input-link{
+    height: 40px;
+    padding-left: 1vw;
+    width: 92%;
+    font-size: 20px;
+    margin-bottom: 1vw;
+    outline: none;
+}
+
+.back-inorders {
+    position: absolute;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    right: calc(100vw - 100px)
+}
+
+.message {
+    position: absolute;
+    margin-left: 90%;
+    margin-top: 70vh;
+}
+
+.back-inorders img,
+.message img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+#save-links {
+    border: none;
+    background-color: #0078d7;
+}

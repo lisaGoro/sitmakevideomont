@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+</head>
+<body>
+    {% csrf_token %}
+
+    <div class="hatProfile">
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/"><h1 id="title">Crystal Studio</h1></a></div>
+    </div>
+    <div class="content">
+    <div class="line">
+        <div class="leftblockProfile">
+            <div class="blockProfile">
+                <div class="Avatar_names">
+                    <div class="avatarProfile" onclick="document.getElementById('fileInput').click()"><img id="uploadImg" src="{% static 'img/upload_file2.png' %}"><img id="avatarImg" src="{% static 'img/avatar1.png' %}"></div>
+                    <input type="file" id="fileInput" onchange="loadNewAvatar()">
+                    <div class="AllNames_email">
+                        <div class="Allnames">
+                            <div class="FirstName">{{firstname}}</div>
+                            <div class="SecondName">{{secondname}}</div>
+                        </div>
+                        <div class="nickname">#{{username}}</div>
+                        <div class="email">{{email}}</div>
+                    </div>
+                </div>
+                <div class="buttonsProfile">
+                    <hr>
+                    {%if telegram == "" %}
+                    <button onclick="window.location.href='/profile/changetg/'">Привязать Telegram</button>
+                    {% else %}
+                    <button><img class="telelogo" src="{% static 'img/telegramlogo.png' %}">{{telegram}}<img class="telelogo" src="{% static 'img/telegramlogo.png' %}"></button>
+                    {% endif %}
+                    <button onclick="window.location.href='/profile/settings/'">Настройки</button>
+                    <button id="exitBut" onclick="exitProfile()">Выйти</button>
+                    
+                </div>
+            </div>
+            <div class="StatBlock">
+                <div class="stats ActiveStat" id="firstReg" onclick="skipstas()"> Дата регистрации: {{datereg}}</div>
+                <div class="stats myOrdersCount" onclick="">Активных заказов:</div>
+                <div class="stats HistoryOrdersCount" onclick="">Всего заказов: {{countallorders}}</div>
+            </div>
+        </div>
+        <div class="menuProfile">
+            <div id="yourorders" class="text">Ваши заказы:</div>
+            
+            {% for i, id in orderssent %}   
+            <div class="order_item" onclick="gotoOrder(this)">
+                <div class="order_name">{{i}}</div>
+                <div class="order_status_color_1"></div>
+                <div class="order_status">Ожидает подтверждения</div>
+                <div class="go_order_buttom"><img src="{% static 'img/arrow_6.png' %}"></div>
+                <div class="order_id" style="display: none;">{{id}}</div>
+            </div>
+            {% endfor %}
+            {% for i, id in ordersinwork %}
+            <div class="order_item" onclick="gotoOrder(this)">
+                <div class="order_name">{{i}}</div>
+                <div class="order_status_color_2"></div>
+                <div class="order_status">Принят в работу</div>
+                <div class="go_order_buttom"><img src="{% static 'img/arrow_6.png' %}"></div>
+                <div class="order_id" style="display: none;">{{id}}</div>
+            </div>
+            {% endfor %}
+            {% for i, id in orderscomplete %}
+            <div class="order_item" onclick="gotoOrder(this)">
+                <div class="order_name">{{i}}</div>
+                <div class="order_status_color_3"></div>
+                <div class="order_status">Выполнен</div>
+                <div class="go_order_buttom"><img src="{% static 'img/arrow_6.png' %}"></div>
+                <div class="order_id" style="display: none;">{{id}}</div>
+            </div>
+            {% endfor %}
+            {% for i, id in orderscanceled %}
+            <div class="order_item" onclick="gotoOrder(this)">
+                <div class="order_name">{{i}}</div>
+                <div class="order_status_color_4"></div>
+                <div class="order_status">Отменен</div>
+                <div class="go_order_buttom"><img src="{% static 'img/arrow_6.png' %}"></div>
+                <div class="order_id" style="display: none;">{{id}}</div>
+            </div>
+            {% endfor %}
+            <div class="new_order"><div class="new_order_but" onclick="window.location.href='/neworder/'" title="Создать новый заказ"><img src="{% static 'img/plus_1.png' %}"></div></div>
+        </div>
+    </div>
+
+    </div>
+
+
+    <script>
+        loaded('{{username}}')
+        function findindex (element, array) {
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] == element) {
+                    return i;
+                }
+            }
+        }
+        if (document.getElementsByClassName("order_item").length == 0) {
+            text = document.getElementById("yourorders")
+            text.textContent = "У вас пока нет заказов"
+            text.style.marginTop = "100px"
+        }
+        function gotoOrder(e) {
+            order_item = e.children
+            order_id = order_item[4].textContent
+<!--            window.location.href = '/order'-->
+            window.location.href = '/order?order_id=' + order_id
+        }
+        function loadNewAvatar() {
+            const file = event.target.files[0]
+            if (file) {
+                if (file.name.slice(-4) != ".png") {
+                    alert("На данный момент поддерживаются только .png файлы")
+                    return
+                }
+
+                const formData = new FormData()
+                formData.append('file', file)
+
+                fetch('/uploadAvatar/', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    window.location.href="/profile/"
+                })
+                .catch(error => {
+                    console.log('Error: ', error)
+                    alert("Ошибка подключения")
+                })
+            }
+        }   
+        function exitProfile() {
+            var x = new XMLHttpRequest();
+            x.open("GET", "/profile/logout/");
+            x.onload = function() {
+                window.location.href = "/index/"
+            }
+            x.send(null);
+        }
+        function skipstas() {
+            active = document.getElementsByClassName("ActiveStat")[0]
+            first = document.getElementById("firstReg")
+            allStats = document.getElementsByClassName("stats")
+            newStats = allStats[(findindex(active, allStats) + 1) % allStats.length]
+            newStats.style.bottom = newStats.offsetHeight * ((findindex(active, allStats) + 1) % allStats.length) + 'px'
+            active.onclick = "";
+            
+            let start = Date.now();
+            let timer = setInterval(function() {
+                let timePassed = Date.now() - start;
+                active.style.right = timePassed * active.offsetWidth / 700 + 'px';
+                newStats.style.right = timePassed * newStats.offsetWidth / 700 - newStats.offsetWidth + 'px';
+                if (timePassed > 700) {
+                    newStats.style.right = 0
+                    active.classList.remove('ActiveStat')
+                    newStats.classList.add('ActiveStat')
+                    newStats.onclick = skipstas;
+                    clearInterval(timer)
+                };
+
+            }, 20)
+        }
+    </script>
+
+</body>
+</html>

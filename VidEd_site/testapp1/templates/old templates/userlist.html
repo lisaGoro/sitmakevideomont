@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/userlist.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/index/">Главная</a>
+        <a href="">Заказ</a>
+        <a href="">Контакты</a>
+        <a href="../profile/">Профиль</a>
+        <a href="../reg/">Регистрация</a>
+        <a href="../auth/">Вход</a>
+    </nav>
+    <div class="content">
+        <div class="userlist">
+            <p>Список пользователей</p> 
+            {% for user, text in data %}
+            <div class="user_box" onclick="location.href='/messanger?user={{user}}'">
+                <div class="user_avatar">
+                    <img src="{% static 'img/avatar1.png' %}">
+                </div>
+                <div class="user_status"></div>
+                <div class="text_block">
+                    <div class="user_name">
+                        <p id="user_name">{{user}}</p>
+                    </div>
+                    
+                    <div class="user_last_message">
+                        <p>{{text}}</p>
+                    </div>
+                </div>
+                <div class="unread_status">
+                    1
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+
+
+    
+
+</body>
+</html>

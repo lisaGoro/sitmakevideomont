@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
+</head>
+<body>
+    <nav>
+        <a href="../index/">Главная</a>
+        <a href="">Заказ</a>
+        <a href="">Контакты</a>
+        <a href="../profile/">Профиль</a>
+    </nav>
+    <div class="content1">
+        <h1>Регистрация</h1>
+        <form action="regcomplete/" method="post">
+            {% csrf_token %}
+            <input id="name" name="name" placeholder="Имя">
+            <input id="email" name="email" placeholder="E-mail">
+            <input type="password" id="password" name="password" placeholder="Пароль">
+            <input type="submit" value="Зарегестрироваться">
+        </form>
+    </div>
+
+</body>

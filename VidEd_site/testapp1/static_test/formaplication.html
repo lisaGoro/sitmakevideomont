@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Заявка</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/formplication.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+</head>
+
+<body>
+    <div class="hat" id="hat">
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/">
+                <h1 id="title">Crystal Studio</h1>
+            </a></div>
+        <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div>
+    </div>
+    <nav id="menu">
+        <p>// Order //</p>
+
+        <a href="/VidEd/">Видеомонтаж</a>
+        <a href="/Prog/"><del>Программирование</del></a>
+        <a href="/Design/"><del>Веб-дизайн</del></a>
+        <hr>
+        <p>// Authentication //</p>
+
+        <a href="/login/">Вход</a>
+        <a href="/reg/">Регистрация</a>
+        <hr>
+        <p>// Info //</p>
+
+        <a href="/contacts/">Контакты</a>
+    </nav>
+    <!-- страница авторизации -->
+    <div class="content">
+        <div class="line">
+            <div class="formcard">
+                <div class="namecard">Заявка</div>
+                <div id="errors" class="errors">
+                    <p id="errorsText" class="glitchText"></p>
+                </div>
+                <div class="text-field text-field_floating-2">
+                    <input id="name_input" class="text-field__input" placeholder="Название">
+                    <label class="text-field__label">Название</label>
+                </div>
+                <div class="text-field text-field_floating-2">
+                    <textarea id="description_input" class="text-field__input" placeholder="Описание"></textarea>
+                    <label class="text-field__label">Описание</label>
+                </div>
+
+                <div id="upload-container">
+                    <img id="upload-image" src="img/upload_file2.png">
+                    <div>
+                        <input id="file-uploader" type="file" name="file" multiple accept="image/*,video/*">
+                        <label id="file-up" for="file-uploader">Выберите файлы</label>
+                    </div>
+                </div>
+
+                <div class="text-field_floating-2">
+                    <a id="feedback"></a>
+                </div>
+
+                <div class="text-field_floating-2 date-time">
+                    <p>Дедлайн(мск время)</p>
+                    <input id="date_input" type="date">
+                    <input id="time_input" type="time">
+                </div>
+
+                <div class="text-field_floating-2">
+                    <button class="button" onclick="sendaplication()">Отправить заявку</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- футер -->
+    <div class="footer">
+        <div class="urls">*Какие-то ссылки*</div>
+        <div class="creators">designed by WolframX</div>
+    </div>
+
+    <script>
+        const fileUploader = document.getElementById("file-uploader");
+        files = [];
+        fileUploader.addEventListener('change', function () {
+            files = this.files;
+            if (files.length <= 10) {
+                const feedback = document.getElementById("feedback");
+                let msg = "";
+                for (i = 0; i < this.files.length; i++) {
+                    msg += `Файл ${this.files[i].name} успешно загружен!<br/>`;
+                }
+                feedback.innerHTML = msg;
+                document.getElementById("file-up").innerHTML = "Выбрать другие файлы";
+            }
+            else {
+                document.getElementById("errors").classList.add("errorsActive");
+                document.getElementById("errorsText").textContent = "Количество файлов превышает 10";
+                this.value = "";
+                files = [];
+            }
+        });
+        function sendaplication() {
+            nametext = document.getElementById("name_input").value;
+            descriptiontext = document.getElementById("description_input").value;
+            dateline = document.getElementById("date_input").value;
+            timeline = document.getElementById("time_input").value;
+            if (dateline && files && nametext && descriptiontext) {
+                if (!timeline)
+                    timeline = "00:00";
+                // отправить данные на бек dateline, timeline, files, nametext, descriptiontext
+            }
+            else {
+                document.getElementById("errors").classList.add("errorsActive");
+                document.getElementById("errorsText").textContent = "Введите данные";
+            }
+        }
+    </script>
+</body>
+
+</html>

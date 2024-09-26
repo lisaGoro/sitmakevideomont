@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
+    
+</head>
+<body>
+    <nav>
+        <a href="/index/">Главная</a>
+        <a href="">Заказ</a>
+        <a href="">Контакты</a>
+        <a href="/profile/">Профиль</a>
+    </nav>
+    {% csrf_token %}
+    <h1>Ваш ник-нейм: {{name}}<h1>
+    <form method="get" action="../logout/">
+        <input class="cancelbut" type="submit" value="Выйти">
+    </form>
+</body>
+</html>

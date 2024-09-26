@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ошибка</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+</head>
+
+<body style="display: flex; align-items: center; flex-direction: column;">
+    <p style="font-size: 40px; font-family: 'MyriadPro';">Вы не авторизованы</p>
+    <a style="font-size: 20px; color: black;" href="/index/">Назад</a>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>TEST</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+        <script src="{% static 'js/index.js' %}"></script>
+        <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    </head>
+    <div class="hat" id="hat">
+        
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/"><h1 id="title">Crystal Studio</h1></a></div>
+        <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div> 
+    </div>
+    <nav id="menu">
+        <p>//   Order   //</p>
+        
+        <a href="/VidEd/">Видеомонтаж</a>
+        <a href="/Prog/"><del>Программирование</del></a>
+        <a href="/Design/"><del>Веб-дизайн</del></a>
+        <hr>
+        <p>//   Authentication   //</p>
+        
+        <a href="/login/">Вход</a>
+        <a href="/reg/">Регистрация</a>
+        <hr>
+        <p>//   Info   //</p>
+        
+        <a href="/contacts/">Контакты</a>
+    </nav>
+    <!-- страница авторизации -->
+    <div class="content">
+        <div class="line">
+            <div class="tagline">Авторизация</div>
+            <div class="authcard">
+                    <div id="errors" class="errors">
+                        <p id="errorsText" class="glitchText"></p>
+                    </div>
+                    <div class="text-field text-field_floating-2">
+                        <input name="login" id="login_input" class="text-field__input" placeholder="Логин">
+                        <label class="text-field__label">Логин/Email</label>
+                    </div>
+                    <div class="text-field text-field_floating-2">
+                        <input name="pass" id="password_input" class="text-field__input" type="password" placeholder="Пароль">
+                        <label class="text-field__label">Пароль</label>
+                        <a href="#" class="password-control" onclick="show_hide_password(this)"></a>
+                    </div>
+                    <div class="text-field text-field_floating-2">
+                        <button onclick="login()" class="button">Войти</button>
+                    </div>
+                    <div class="text-field text-field_floating-2">
+                        <a>Войти другим способом</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- футер -->
+    <div class="footer">
+        <div class="urls">*Какие-то ссылки*</div>
+        <div class="creators">designed by WolframX</div>
+    </div>
+
+    <script>
+        function showMenu() {
+            menu = document.getElementById("menu")
+            menu.classList.toggle("activeMenu")
+            menuBut = document.getElementById("menuBut")
+            menuBut.classList.toggle("acivateBut")
+            hat = document.getElementById("hat")
+            hat.classList.toggle("hatBlack")
+        }
+        function show_hide_password(target) {
+            var input = document.getElementById('password_input');
+            if (input.getAttribute('type') == 'password') {
+                target.classList.add('view');
+                input.setAttribute('type', 'text');
+            } else {
+                target.classList.remove('view');
+                input.setAttribute('type', 'password');
+            }
+            return false;
+        }
+        function login() {
+            pass = document.getElementById("password_input").value;
+            logintext = document.getElementById("login_input").value;
+            if (pass != "" && logintext != "") {
+                $.ajax({
+                    url: '/login/',
+                    type: 'POST',
+                    data: {
+                        login: logintext,
+                        password: pass
+                        // csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.text == "NotLogin") {
+                            errors = document.getElementById("errors")
+                            errorstext = document.getElementById("errorsText")
+                            errors.classList.add("errorsActive")
+                            errorstext.textContent = "Неверный логин или пароль"
+                        }
+                        else if (data.text == "NiceWorkLogin") {
+                            window.location.href= '/worker/'
+                        }
+                        else if (data.text == "NiceClientLogin") {
+                            window.location.href = "/profile/"
+                        }
+                        
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        errors = document.getElementById("errors")
+                        errorstext = document.getElementById("errorsText")
+                        errors.classList.add("errorsActive")
+                        errorstext.textContent = "Ошибка подключения";
+                    }
+                });
+            }
+            else {
+                errors = document.getElementById("errors")
+                errorstext = document.getElementById("errorsText")
+                errors.classList.add("errorsActive")
+                errorstext.textContent = "Введите данные"
+            }
+        }
+
+            
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Заявка</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/wsettings.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+</head>
+
+<body>
+    <div class="hat" id="hat">
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/">
+                <h1 id="title">Crystal Studio</h1>
+            </a></div>
+        <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div>
+    </div>
+    <nav id="menu">
+        <p>// Order //</p>
+        <a href="/Orders/">Свободные заказы</a>
+        <a href="/History/">История заказов</a>
+        <hr>
+        <p>// Profile //</p>
+        <a href="/worker/">Профиль</a>
+    </nav>
+
+    <div class="content">
+        <div class="line">
+            <div class="infochange">
+                <p class="maintext">Настройки профиля</p>
+                <input type="file" id="avatar_upload">
+                <label for="avatar_upload">Изменить аватар: Выберите файл</label>
+                <form method="post" action="/worker/settings/">
+                    {% csrf_token %}
+                    <p>Имя:</p>
+                    <input type="text" id="firstnameCH" autocomplete="off" required maxlength="30" name="firstname" value="{{firstname}}">
+                    <p>Фамилия:</p>
+                    <input type="text" id="secondnameCH" autocomplete="off" name="secondname" value="{{secondname}}">
+                    <input type="submit" id="saveBut" value="Сохранить">
+                </form>
+            </div>
+            <div class="telegram">
+                    <p>Привязать телеграмм</p>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="footer">
+        <div class="urls">*Какие-то ссылки*</div>
+        <div class="creators">designed by WolframX</div>
+    </div>
+    <script>
+        fileUploader = document.getElementById("avatar_upload")
+        fileUploader.addEventListener('change', function () {
+            file = this.files[0];
+
+            const formData = new FormData();
+            if (file.size < 10485760) {
+                formData.append('file', file);
+            }
+            else {
+                alert("Максимальный размер файла - 10 мб")
+            }
+            
+            fetch('/uploadAvatar/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                window.location.href="/worker/"
+            })
+            .catch(error => {
+                alert("Ошибка подключения")
+            })
+        });
+    </script>
+</body>
+</html>
